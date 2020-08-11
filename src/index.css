@@ -13,9 +13,10 @@ body,
 input,
 select,
 button,
+option,
 textarea {
   font-size: 1.6rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: fantasy;
 }
 
 .grid-container {
@@ -32,16 +33,23 @@ header {
   color: white;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1.5rem;
 }
 
 header a {
   color: white;
   text-decoration: none;
+  padding: 0.5rem;
+  font-size: xx-large;
 }
 
 a:hover {
   color: brown;
+}
+
+.title {
+  font-size: x-large;
+  text-align: center;
 }
 
 main {
@@ -99,7 +107,7 @@ footer {
 
 .product img {
   width: 31rem;
-  height: 37rem;
+  height: 31rem;
 }
 
 .prix-produit {
@@ -115,7 +123,7 @@ footer {
 }
 
 .prix-produit div {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 button {
@@ -139,7 +147,7 @@ a {
 
 /* CSS filter */
 
-.filter{
+.filter {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -147,6 +155,60 @@ a {
   border-bottom: 0.1rem #c0c0c0 solid;
 }
 
-.filter div{
+.filter div {
+  flex: 1;
+}
+
+/* CSS panier */
+
+.panier {
+  margin: 1rem;
+  padding: 1.15rem;
+  display: flex;
+}
+
+.panier-header {
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+
+.panier-carte {
+  padding: 0;
+  width: 100%;
+  list-style-type: none;
+}
+
+.panier-carte img {
+  width: 8rem;
+  height: 7rem;
+}
+
+.panier-carte li {
+  display: flex;
+}
+
+.panier-carte li div {
+  padding: 0.5rem;
+}
+
+.panier-carte li div :last-child {
+  flex: 1;
+}
+
+.right{
+  text-align: right;
+}
+
+.total{
+  text-align: center;
+  width: 100%;
+  align-items: center;
+}
+
+.total > div{
+  font-size: 1.7rem;
+}
+
+.total > div,
+.total > button{
   flex: 1;
 }

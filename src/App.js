@@ -2,6 +2,7 @@ import React from "react";
 import data from "./data.json";
 import Produits from "./components/Produits";
 import Filter from "./components/Filter";
+import Panier from "./components/Panier";
 
 class App extends React.Component {
   state = {
@@ -9,6 +10,7 @@ class App extends React.Component {
     type: "",
     etat: "",
     tri: "",
+    panier: [],
   };
 
   filterType = (e) => {
@@ -68,6 +70,27 @@ class App extends React.Component {
     }));
   };
 
+  addPanier = (product) => {
+    const panier = this.state.panier.slice();
+    let alreadyInPanier = false;
+    panier.forEach((produit) => {
+      if (produit._id === product._id) {
+        produit.count++;
+        alreadyInPanier = true;
+      }
+    });
+    if (!alreadyInPanier) {
+      panier.push({ ...product, count: 1 });
+    }
+    this.setState({ panier });
+  };
+
+  supprimerProduit=(produit)=>{
+    const panier=this.state.panier.slice();
+    this.setState({panier: panier.filter(x=>x._id!==produit._id)})
+    
+  }
+
   render() {
     return (
       <div className="grid-container">
@@ -86,9 +109,16 @@ class App extends React.Component {
                 filterEtat={this.filterEtat}
                 sortPrix={this.sortPrix}
               />
-              <Produits products={this.state.products} />
+              <Produits
+                products={this.state.products}
+                addPanier={this.addPanier}
+              />
             </div>
-            <div className="sidebar">Panier</div>
+            <div className="sidebar">
+              <Panier panier={this.state.panier} 
+              supprimerProduit={this.supprimerProduit}
+              />
+            </div>
           </div>
         </main>
         <footer>By Amri Salim</footer>
