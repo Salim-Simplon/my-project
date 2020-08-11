@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import formatPrix from "./Prix"
+import formatPrix from "./Prix";
 
 export default class Produits extends Component {
   render() {
@@ -9,14 +9,20 @@ export default class Produits extends Component {
           {this.props.products.map((product) => (
             <li key={product._id}>
               <div className="product">
+                <img src={product.photo} alt={product.titre}></img>
                 <a href={"#" + product._id}>
-                  <img src={product.photo} alt={product.titre}></img>
-                  <p>{product.titre}</p>
+                  {" "}
+                  <p className="title">{product.titre}</p>
                 </a>
-                <div className="prix-produit">
+                <p className="prix-produit">
                   <div>{formatPrix(product.prix)}</div>
-                  <button className="button primary">Ajouter au panier</button>
-                </div>
+                  <button
+                    onClick={() => this.props.addPanier(product)}
+                    className="button primary"
+                  >
+                    Ajouter au panier
+                  </button>
+                </p>
               </div>
             </li>
           ))}
