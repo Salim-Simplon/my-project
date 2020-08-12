@@ -10,7 +10,13 @@ class App extends React.Component {
     type: "",
     etat: "",
     tri: "",
-    panier: [],
+    panier: localStorage.getItem("panier")
+      ? JSON.parse(localStorage.getItem("panier"))
+      : [],
+  };
+
+  passerCommande = (commande) => {
+    alert(commande.name + " : Votre commande est validée");
   };
 
   filterType = (e) => {
@@ -83,13 +89,17 @@ class App extends React.Component {
       panier.push({ ...product, count: 1 });
     }
     this.setState({ panier });
+    localStorage.setItem("panier", JSON.stringify(panier));
   };
 
-  supprimerProduit=(produit)=>{
-    const panier=this.state.panier.slice();
-    this.setState({panier: panier.filter(x=>x._id!==produit._id)})
-    
-  }
+  supprimerProduit = (produit) => {
+    const panier = this.state.panier.slice();
+    this.setState({ panier: panier.filter((x) => x._id !== produit._id) });
+    localStorage.setItem(
+      "panier",
+      JSON.stringify(panier.filter((x) => x._id !== produit._id))
+    );
+  };
 
   render() {
     return (
@@ -115,8 +125,10 @@ class App extends React.Component {
               />
             </div>
             <div className="sidebar">
-              <Panier panier={this.state.panier} 
-              supprimerProduit={this.supprimerProduit}
+              <Panier
+                panier={this.state.panier}
+                supprimerProduit={this.supprimerProduit}
+                passerCommande={this.passerCommande}
               />
             </div>
           </div>
