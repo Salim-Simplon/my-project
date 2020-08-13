@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import formatPrix from "./Prix";
+import Fade from "react-reveal/Fade";
 
 export default class Panier extends Component {
   state = {
@@ -39,27 +40,29 @@ export default class Panier extends Component {
         )}
         <div>
           <div className="panier">
-            <ul className="panier-carte">
-              {panier.map((produit) => (
-                <li key={produit._id}>
-                  <div>
-                    <img src={produit.photo} alt={produit.titre}></img>
-                  </div>
-                  <div>
-                    <div>{produit.titre}</div>
-                    <div className="right">
-                      {formatPrix(produit.prix)}{" "}
-                      <button
-                        className="button"
-                        onClick={() => this.props.supprimerProduit(produit)}
-                      >
-                        Enlever
-                      </button>
+            <Fade left cascade={true}>
+              <ul className="panier-carte">
+                {panier.map((produit) => (
+                  <li key={produit._id}>
+                    <div>
+                      <img src={produit.photo} alt={produit.titre}></img>
                     </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+                    <div>
+                      <div>{produit.titre}</div>
+                      <div className="right">
+                        {formatPrix(produit.prix)}{" "}
+                        <button
+                          className="button"
+                          onClick={() => this.props.supprimerProduit(produit)}
+                        >
+                          Enlever
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </Fade>
           </div>
           {panier.length !== 0 && (
             <div>
@@ -79,53 +82,55 @@ export default class Panier extends Component {
                 </div>
               </div>
               {this.state.showCheckout && (
-                <div className="panier">
-                  <form onSubmit={this.passerCommande}>
-                    <ul className="form-container">
-                      <li>
-                        <label>Nom et prénom</label>
-                        <input
-                          name="name"
-                          type="text"
-                          required
-                          onChange={this.handleInput}
-                        ></input>
-                      </li>
-                      <li>
-                        <label>Téléphone</label>
-                        <input
-                          name="phone"
-                          type="text"
-                          required
-                          onChange={this.handleInput}
-                        ></input>
-                      </li>
-                      <li>
-                        <label>Adresse de livraison</label>
-                        <input
-                          name="adress"
-                          type="text"
-                          required
-                          onChange={this.handleInput}
-                        ></input>
-                      </li>
-                      <li>
-                        <label>N° de C.I.N</label>
-                        <input
-                          name="CIN"
-                          type="text"
-                          required
-                          onChange={this.handleInput}
-                        ></input>
-                      </li>
-                      <li>
-                        <button className="button-primary" type="submit">
-                          Valider
-                        </button>
-                      </li>
-                    </ul>
-                  </form>
-                </div>
+                <Fade right cascade={true}>
+                  <div className="panier">
+                    <form onSubmit={this.passerCommande}>
+                      <ul className="form-container">
+                        <li>
+                          <label>Nom et prénom</label>
+                          <input
+                            name="name"
+                            type="text"
+                            required
+                            onChange={this.handleInput}
+                          ></input>
+                        </li>
+                        <li>
+                          <label>Téléphone</label>
+                          <input
+                            name="phone"
+                            type="text"
+                            required
+                            onChange={this.handleInput}
+                          ></input>
+                        </li>
+                        <li>
+                          <label>Adresse de livraison</label>
+                          <input
+                            name="adress"
+                            type="text"
+                            required
+                            onChange={this.handleInput}
+                          ></input>
+                        </li>
+                        <li>
+                          <label>N° de C.I.N</label>
+                          <input
+                            name="CIN"
+                            type="text"
+                            required
+                            onChange={this.handleInput}
+                          ></input>
+                        </li>
+                        <li>
+                          <button className="button-primary" type="submit">
+                            Valider
+                          </button>
+                        </li>
+                      </ul>
+                    </form>
+                  </div>
+                </Fade>
               )}
             </div>
           )}
