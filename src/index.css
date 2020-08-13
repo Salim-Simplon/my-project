@@ -194,45 +194,79 @@ a {
   flex: 1;
 }
 
-.right{
+.right {
   text-align: right;
 }
 
-.total{
+.total {
   text-align: center;
   width: 100%;
   align-items: center;
 }
 
-.total > div{
+.total > div {
   font-size: 1.7rem;
 }
 
 .total > div,
-.total > button{
+.total > button {
   flex: 1;
 }
 
 /* Client form CSS */
 
-form{
+form {
   width: 100%;
 }
 
-.form-container{
+.form-container {
   width: 100%;
   padding: 0;
   list-style-type: none;
 }
 
-.form-container li{
+.form-container li {
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
 
-input{
+input {
   padding: 1rem;
   margin-top: 1rem;
   border: 0.1rem #c0c0c0 solid;
+}
+
+/* Modal CSS */
+
+.produit-description {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 96vh;
+}
+
+.produit-description img {
+  max-width: 34rem;
+  max-height: 41rem;
+}
+
+.titre-modal{
+  font-size: x-large;
+  font-weight: bolder;
+  color: blue;
+}
+
+.produit-description-detail {
+  flex: 1 1;
+  margin: 1rem;
+  margin-left: 2rem;
+}
+
+.close-modal {
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+  z-index: 1000;
+  width: 4rem;
 }
